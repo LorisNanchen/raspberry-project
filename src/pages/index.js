@@ -1,33 +1,65 @@
-import { DataStore } from 'aws-amplify'
+
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { Post } from '../models'
+import { generateClient } from "aws-amplify/api";
+import { listPosts, getPost } from "../graphql/queries";
+import { createPost, updatePost, deletePost } from '../graphql/mutations';
+
+const client = generateClient()
 
 export default function Home() {
-  const [posts, setPosts] = useState([])
 
-  useEffect(() => {
-    fetchPosts()
-    async function fetchPosts() {
-      const postData = await DataStore.query(Post)
-      setPosts(postData)
-    }
-    const subscription = DataStore.observe(Post).subscribe(() => fetchPosts())
-    return () => subscription.unsubscribe()
-  }, [])
-  
+  async function fetchPosts() {
+    const allPosts = await client.graphql({
+      query: listPosts
+    });
+    console.log(allPosts);
+  };
+
+  async function makePost() {
+    const newPost = await client.graphql({
+      query: createPost,
+      variables: {
+        input: {
+          "titel": "brand new post",
+          "content": "Lorem ipsum dolor sit amet"
+        }
+      }
+    });
+    console.log(newPost)
+  }
+
+  async function changePost() {
+    const updatedPost = await client.graphql({
+      query: updatePost,
+      variables: {
+        input: {
+          "id": "8e4b5137-5246-44fc-a9da-99602ad32c19",
+          "titel": "Lorem ipsum dolor sit amet",
+          "content": "Lorem ipsum dolor sit amet"
+        }
+      }
+    });
+  }
+
+  async function suppPost() {
+    const updatedPost = await client.graphql({
+      query: deletePost,
+      variables: {
+        input: {
+          "id": "8e4b5137-5246-44fc-a9da-99602ad32c19",
+        }
+      }
+    });
+  }
+
+
   return (
     <div>
       <h1>Posts</h1>
-      {
-        posts.map(post => (
-          <Link href={`/posts/${post.id}`}>
-            <a>
-              <h2>{post.title}</h2>
-            </a>
-          </Link>
-        ))
-      }
+      <button onClick={makePost}>Create</button><br/>
+      <button onClick={changePost}>Update</button><br/>
+      <button onClick={suppPost}>Delete</button><br/>
     </div>
   )
 }
