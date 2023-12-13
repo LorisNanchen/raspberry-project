@@ -62,16 +62,15 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Posts</h1>
-      <button onClick={fetchPosts}>Fetch</button><br/>
       <button onClick={makePost}>Create</button><br/>
+      <button onClick={fetchPosts}>Read</button><br/>
       <button onClick={changePost}>Update</button><br/>
-      <button onClick={suppPost}>Delete</button><br/>
+      <button onClick={suppPost}>Delete</button><br/><br/>
       {
         posts.map((post, index) => (
           <div key={index}>
             <div>{post.titel}</div>
-            <div>{post.content}</div>
+            <div>{post.content}</div><br/>
           </div>
         ))
       }

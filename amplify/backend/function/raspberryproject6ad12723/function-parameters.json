@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "api": {
+      "raspberryproject": [
+        "Query",
+        "Mutation",
+        "Subscription"
+      ]
+    }
+  },
+  "lambdaLayers": []
+}
