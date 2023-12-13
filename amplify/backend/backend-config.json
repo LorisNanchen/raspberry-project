@@ -21,5 +21,22 @@
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
     }
+  },
+  "function": {
+    "raspberryprojectf6359af5": {
+      "build": true,
+      "dependsOn": [
+        {
+          "attributes": [
+            "GraphQLAPIIdOutput",
+            "GraphQLAPIEndpointOutput"
+          ],
+          "category": "api",
+          "resourceName": "raspberryproject"
+        }
+      ],
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
   }
 }

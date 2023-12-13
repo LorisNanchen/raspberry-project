@@ -10,6 +10,11 @@
       "StackName": "amplify-amplifycd8927be36094-staging-135324",
       "StackId": "arn:aws:cloudformation:eu-central-1:048616059779:stack/amplify-amplifycd8927be36094-staging-135324/fda9fdf0-9507-11ee-825d-02d81e1054db",
       "AmplifyAppId": "d1vjfxwb2wfobu"
+    },
+    "categories": {
+      "function": {
+        "raspberryprojectf6359af5": {}
+      }
     }
   }
 }
