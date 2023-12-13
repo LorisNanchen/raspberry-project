@@ -9,11 +9,14 @@ const client = generateClient()
 
 export default function Home() {
 
+  const [posts, setPosts] = useState([])
+
   async function fetchPosts() {
     const allPosts = await client.graphql({
       query: listPosts
     });
-    console.log(allPosts);
+    console.log(allPosts.data.listPosts.items);
+    setPosts(allPosts.data.listPosts.items)
   };
 
   async function makePost() {
@@ -27,6 +30,7 @@ export default function Home() {
       }
     });
     console.log(newPost)
+    fetchPosts()
   }
 
   async function changePost() {
@@ -34,12 +38,13 @@ export default function Home() {
       query: updatePost,
       variables: {
         input: {
-          "id": "8e4b5137-5246-44fc-a9da-99602ad32c19",
+          "id": posts[0].id,
           "titel": "Lorem ipsum dolor sit amet",
           "content": "Lorem ipsum dolor sit amet"
         }
       }
     });
+    fetchPosts()
   }
 
   async function suppPost() {
@@ -47,19 +52,29 @@ export default function Home() {
       query: deletePost,
       variables: {
         input: {
-          "id": "8e4b5137-5246-44fc-a9da-99602ad32c19",
+          "id": posts[0].id,
         }
       }
     });
+    fetchPosts()
   }
 
 
   return (
     <div>
       <h1>Posts</h1>
+      <button onClick={fetchPosts}>Fetch</button><br/>
       <button onClick={makePost}>Create</button><br/>
       <button onClick={changePost}>Update</button><br/>
       <button onClick={suppPost}>Delete</button><br/>
+      {
+        posts.map((post, index) => (
+          <div key={index}>
+            <div>{post.titel}</div>
+            <div>{post.content}</div>
+          </div>
+        ))
+      }
     </div>
   )
 }
