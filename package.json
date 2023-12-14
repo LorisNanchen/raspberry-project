@@ -13,7 +13,9 @@
     "@aws-amplify/datastore": "^5.0.7",
     "@aws-amplify/ui-react": "^6.0.4",
     "aws-amplify": "^6.0.7",
+    "aws-iot-device-sdk": "^2.2.13",
     "next": "14.0.3",
+    "node-dht-sensor": "^0.4.3",
     "react": "^18",
     "react-dom": "^18"
   },

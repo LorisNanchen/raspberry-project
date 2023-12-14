@@ -85,5 +85,5 @@ const query = /* GraphQL */ `
     //   "Access-Control-Allow-Headers": "*"
     // }, 
     body: JSON.stringify(body)
-  };
-};
+  }
+}
