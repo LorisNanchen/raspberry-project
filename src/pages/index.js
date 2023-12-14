@@ -1,8 +1,7 @@
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { generateClient } from "aws-amplify/api";
-import { listPosts, getPost } from "../graphql/queries";
+import { listPosts } from "../graphql/queries";
 import { createPost, updatePost, deletePost } from '../graphql/mutations';
 
 const client = generateClient()
