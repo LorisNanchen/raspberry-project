@@ -42,7 +42,7 @@ const query = /* GraphQL */ `
     region: AWS_REGION,
     service: 'appsync',
     sha256: Sha256
-  });
+  })
 
   const requestToBeSigned = new HttpRequest({
     method: 'POST',
@@ -53,7 +53,7 @@ const query = /* GraphQL */ `
     hostname: endpoint.host,
     body: JSON.stringify({ query }),
     path: endpoint.pathname
-  });
+  })
 
   const signed = await signer.sign(requestToBeSigned);
   const request = new Request(endpoint, signed);
@@ -74,7 +74,7 @@ const query = /* GraphQL */ `
           message: error.message
         }
       ]
-    };
+    }
   }
 
   return {

@@ -44,5 +44,5 @@ export const deletePost = /* GraphQL */ `
       updatedAt
       __typename
     }
-  };
+  }
 `;

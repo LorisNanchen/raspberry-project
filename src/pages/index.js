@@ -13,10 +13,10 @@ export default function Home() {
   async function fetchPosts() {
     const allPosts = await client.graphql({
       query: listPosts
-    });
+    })
     console.log(allPosts.data.listPosts.items);
     setPosts(allPosts.data.listPosts.items)
-  };
+  }
 
   async function makePost() {
     const newPost = await client.graphql({
@@ -42,7 +42,7 @@ export default function Home() {
           "content": "Lorem ipsum dolor sit amet"
         }
       }
-    });
+    })
     fetchPosts()
   }
 
@@ -51,10 +51,10 @@ export default function Home() {
       query: deletePost,
       variables: {
         input: {
-          "id": posts[0].id,
+          "id": posts[0].id
         }
       }
-    });
+    })
     fetchPosts()
   }
 
